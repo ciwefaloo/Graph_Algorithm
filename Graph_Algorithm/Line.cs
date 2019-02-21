@@ -16,9 +16,9 @@ namespace Graph_Algorithm
             this.gr = gr;
         }
 
-        public void DrawLine(int x1, int y1, int x2, int y2)
+        public void DrawLine(int x1, int y1, int x2, int y2, Pen pen)
         {
-            Pen pen = new Pen(Color.Black);
+            //Pen pen = new Pen(Color.Black);
             gr.DrawLine(pen, x1, y1, x2, y2);
         }
 
