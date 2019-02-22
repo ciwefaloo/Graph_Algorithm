@@ -50,7 +50,20 @@ namespace Graph_Algorithm
             point[4].x = 250;
             point[4].y = 100;
 
-            int n = 5;
+            point[5] = new Vector2();
+            point[5].x = 70;
+            point[5].y = 150;
+
+            point[6] = new Vector2();
+            point[6].x = 300;
+            point[6].y = 300;
+
+            point[7] = new Vector2();
+            point[7].x = 200;
+            point[7].y = 400;
+
+
+            int n = 8;
             int[,] arr = new int[n, n];
             arr[0, 1] = 1;
             arr[0, 4] = 1;
@@ -60,6 +73,14 @@ namespace Graph_Algorithm
             arr[3, 2] = 1;
             arr[4, 2] = 1;
             arr[4, 0] = 1;
+            arr[5, 1] = 1;
+            arr[1, 5] = 1;
+            arr[6, 2] = 1;
+            arr[2, 6] = 1;
+            arr[6, 7] = 1;
+            arr[7, 6] = 1;
+            arr[7, 3] = 1;
+            arr[3, 7] = 1;
 
             Graph graph = new Graph(arr, n, point);
 
@@ -67,7 +88,7 @@ namespace Graph_Algorithm
 
             SolidBrush solidBrush = new SolidBrush(Color.FromArgb(255, 0, 0, 0));
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 8; i++)
             {
                 c.DrawCircle(point[i].x, point[i].y, solidBrush);
             }
@@ -80,8 +101,13 @@ namespace Graph_Algorithm
             l.DrawLine(250 + H_RADIUS, 100 + H_RADIUS, 230 + H_RADIUS, 200 + H_RADIUS, black);
             l.DrawLine(230 + H_RADIUS, 200 + H_RADIUS, 70 + H_RADIUS, 300 + H_RADIUS, black);
 
+            l.DrawLine(50 + H_RADIUS, 70 + H_RADIUS, 70 + H_RADIUS, 150 + H_RADIUS, black);
+            l.DrawLine(230 + H_RADIUS, 200 + H_RADIUS, 300 + H_RADIUS, 300 + H_RADIUS, black);
+            l.DrawLine(300 + H_RADIUS, 300 + H_RADIUS, 200 + H_RADIUS, 400 + H_RADIUS, black);
+            l.DrawLine(200 + H_RADIUS, 400 + H_RADIUS, 70 + H_RADIUS, 300 + H_RADIUS, black);
 
-            IAlgorithm myAlgo = new Algo_DFS();
+            
+            IAlgorithm myAlgo = new Algo_BFS();
             myAlgo.Run(graph);
 
             Edge[] edge = new Edge[100];
@@ -115,7 +141,7 @@ namespace Graph_Algorithm
 
                 System.Threading.Thread.Sleep(250);
             }
-
+            
         }
     }
 }
