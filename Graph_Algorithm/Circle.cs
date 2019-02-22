@@ -16,9 +16,9 @@ namespace Graph_Algorithm
             this.gr = gr;
         }
 
-        public void DrawCircle(int x, int y)
+        public void DrawCircle(int x, int y, SolidBrush solidBrush)
         {
-            SolidBrush solidBrush = new SolidBrush(Color.FromArgb(255, 0, 0, 0));
+            //SolidBrush solidBrush = new SolidBrush(Color.FromArgb(255, 0, 0, 0));
             gr.FillEllipse(solidBrush, x, y, 40, 40);
         }
     }

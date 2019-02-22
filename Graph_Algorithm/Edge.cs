@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Graph_Algorithm
 {
-    interface IAlgorithm
+    class Edge
     {
-        void Run(Graph graph);
-
-        void SetDrawArea(Edge[] edge);
-
+        public Vector2 v1 = new Vector2();
+        public Vector2 v2 = new Vector2();
+        public int size = 0;
     }
 }

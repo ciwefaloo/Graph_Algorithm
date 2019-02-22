@@ -15,7 +15,6 @@ namespace Graph_Algorithm
         private int cnt = 0;
 
         private Graph graph;
-        private Form1 form;
 
         public void Run(Graph graph)
         {
@@ -44,8 +43,34 @@ namespace Graph_Algorithm
             }
         }
 
-        public void SetDrawArea(Form1 form)
+        public void SetDrawArea(Edge[] edge)
         {
+            for(int i = 0; i < cnt - 1; i++)
+            {
+                if (graph.is_edge(way[i], way[i + 1]))
+                {
+                    edge[i].v1.x = graph.vertex[way[i]].x;
+                    edge[i].v1.y = graph.vertex[way[i]].y;
+
+                    edge[i].v2.x = graph.vertex[way[i + 1]].x;
+                    edge[i].v2.y = graph.vertex[way[i + 1]].y;
+                }
+                else
+                {
+                    for(int j = i - 1; j >= 0; j--)
+                    {
+                        if (graph.is_edge(way[i+1], way[j]))
+                        {
+                            edge[i].v2.x = graph.vertex[way[i+1]].x;
+                            edge[i].v2.y = graph.vertex[way[i+1]].y;
+
+                            edge[i].v1.x = graph.vertex[way[j]].x;
+                            edge[i].v1.y = graph.vertex[way[j]].y;
+                        }
+                    }
+                }
+
+            }
         }
 
     }

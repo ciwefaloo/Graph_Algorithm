@@ -10,7 +10,7 @@ namespace Graph_Algorithm
     {
         private int[,] arr = new int[100, 100];
         private int n;
-        public Vector2[] point = new Vector2[100];
+        public Vector2[] vertex = new Vector2[100];
 
         public Graph(int[,] p_arr, int p_n, Vector2[] point)
         {
@@ -20,10 +20,12 @@ namespace Graph_Algorithm
                 for (int j = 0; j < n; j++)
                 {
                     arr[i, j] = p_arr[i, j];
-                    this.point[i] = new Vector2();
-                    this.point[i].x = point[i].x;
-                    this.point[i].y = point[i].y;
                 }
+
+                vertex[i] = new Vector2();
+                vertex[i].x = point[i].x;
+                vertex[i].y = point[i].y;
+
             }
         }
 

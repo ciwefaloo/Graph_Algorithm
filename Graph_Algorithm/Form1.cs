@@ -63,11 +63,13 @@ namespace Graph_Algorithm
 
             Graph graph = new Graph(arr, n, point);
 
-
             Circle c = new Circle(gr);
+
+            SolidBrush solidBrush = new SolidBrush(Color.FromArgb(255, 0, 0, 0));
+
             for (int i = 0; i < 5; i++)
             {
-                c.DrawCircle(point[i].x, point[i].y);
+                c.DrawCircle(point[i].x, point[i].y, solidBrush);
             }
 
             Line l = new Line(gr);
@@ -81,6 +83,39 @@ namespace Graph_Algorithm
 
             IAlgorithm myAlgo = new Algo_DFS();
             myAlgo.Run(graph);
+
+            Edge[] edge = new Edge[100];
+            for(int i = 0; i < 100; i++)
+            {
+                edge[i] = new Edge();
+            }
+
+            myAlgo.SetDrawArea(edge);
+
+
+            SolidBrush solid = new SolidBrush(Color.FromArgb(255, 255, 0, 0));
+
+            for (int i = 0; i < n-1; i++)
+            {
+                int v1_x = edge[i].v1.x;
+                int v1_y = edge[i].v1.y;
+
+                int v2_x = edge[i].v2.x;
+                int v2_y = edge[i].v2.y;
+
+                c.DrawCircle(v1_x, v1_y, solid);
+
+                System.Threading.Thread.Sleep(500);
+
+                l.DrawLine(v1_x + H_RADIUS, v1_y + H_RADIUS, v2_x + H_RADIUS, v2_y + H_RADIUS, new Pen(Color.Red));
+
+                System.Threading.Thread.Sleep(500);
+
+                c.DrawCircle(v2_x, v2_y, solid);
+
+                System.Threading.Thread.Sleep(250);
+            }
+
         }
     }
 }
