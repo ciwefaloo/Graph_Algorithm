@@ -22,7 +22,7 @@ namespace Graph_Algorithm
             queue.Enqueue(0);
             used[0] = true;
             way[cnt++] = 0;
-            int n = graph.size();
+            int n = graph.size_vertex();
             while (queue.Count != 0)
             {
                 object obj = queue.Peek();

@@ -10,6 +10,6 @@ namespace Graph_Algorithm
     {
         public Vector2 v1 = new Vector2();
         public Vector2 v2 = new Vector2();
-        public int size = 0;
+        public int weight = 0;
     }
 }

@@ -21,7 +21,7 @@ namespace Graph_Algorithm
             this.graph = graph;
             used[0] = true;
             dfs(0);
-            for (int i = 0; i < graph.size(); i++)
+            for (int i = 0; i < graph.size_vertex(); i++)
             {
                 if (used[i] == false)
                 {
@@ -34,7 +34,7 @@ namespace Graph_Algorithm
         {
             used[v] = true;
             way[cnt++] = v;
-            for (int i = 0; i < graph.size(); i++)
+            for (int i = 0; i < graph.size_vertex(); i++)
             {
                 if (v != i && (graph.is_edge(v, i) && used[i] == false))
                 {

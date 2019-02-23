@@ -65,22 +65,22 @@ namespace Graph_Algorithm
 
             int n = 8;
             int[,] arr = new int[n, n];
-            arr[0, 1] = 1;
-            arr[0, 4] = 1;
-            arr[1, 0] = 1;
-            arr[2, 4] = 1;
-            arr[2, 3] = 1;
-            arr[3, 2] = 1;
-            arr[4, 2] = 1;
-            arr[4, 0] = 1;
-            arr[5, 1] = 1;
-            arr[1, 5] = 1;
-            arr[6, 2] = 1;
-            arr[2, 6] = 1;
-            arr[6, 7] = 1;
-            arr[7, 6] = 1;
-            arr[7, 3] = 1;
-            arr[3, 7] = 1;
+            arr[0, 1] = 5;
+            arr[0, 4] = 9;
+            arr[1, 0] = 5;
+            arr[2, 4] = 10;
+            arr[2, 3] = 15;
+            arr[3, 2] = 15;
+            arr[4, 2] = 10;
+            arr[4, 0] = 9;
+            arr[5, 1] = 7;
+            arr[1, 5] = 7;
+            arr[6, 2] = 30;
+            arr[2, 6] = 30;
+            arr[6, 7] = 5;
+            arr[7, 6] = 5;
+            arr[7, 3] = 19;
+            arr[3, 7] = 19;
 
             Graph graph = new Graph(arr, n, point);
 
@@ -107,7 +107,10 @@ namespace Graph_Algorithm
             l.DrawLine(200 + H_RADIUS, 400 + H_RADIUS, 70 + H_RADIUS, 300 + H_RADIUS, black);
 
             
-            IAlgorithm myAlgo = new Algo_BFS();
+            //IAlgorithm myAlgo = new Algo_DFS();
+            //IAlgorithm myAlgo = new Algo_BFS();
+            IAlgorithm myAlgo = new Algo_Kruskal();
+            
             myAlgo.Run(graph);
 
             Edge[] edge = new Edge[100];
@@ -120,6 +123,16 @@ namespace Graph_Algorithm
 
 
             SolidBrush solid = new SolidBrush(Color.FromArgb(255, 255, 0, 0));
+
+            string s = "";
+            for(int i = 0; i < n - 1; i++)
+            {
+                s += edge[i].v1.x;
+                s = s + " " + edge[i].v1.y + "    " + edge[i].v2.x + " " + edge[i].v1.y + '\n';
+            }
+
+            MessageBox.Show(s);
+
 
             for (int i = 0; i < n-1; i++)
             {
@@ -140,6 +153,7 @@ namespace Graph_Algorithm
                 c.DrawCircle(v2_x, v2_y, solid);
 
                 System.Threading.Thread.Sleep(250);
+
             }
             
         }
