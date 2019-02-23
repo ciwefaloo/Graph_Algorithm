@@ -48,7 +48,9 @@
   <ItemGroup>
     <Compile Include="Algo_BFS.cs" />
     <Compile Include="Algo_DFS.cs" />
+    <Compile Include="Algo_Floyd.cs" />
     <Compile Include="Algo_Kruskal.cs" />
+    <Compile Include="Algo_Prima.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Edge.cs" />
     <Compile Include="Form1.cs">

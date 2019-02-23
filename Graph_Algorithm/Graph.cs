@@ -8,7 +8,7 @@ namespace Graph_Algorithm
 {
     class Graph
     {
-        public int[,] arr = new int[100, 100];
+        private int[,] arr = new int[100, 100];
         private int n;
         public Vector2[] vertex = new Vector2[100];
         private int count_edge = 0;
@@ -43,6 +43,12 @@ namespace Graph_Algorithm
         public int size_edge()
         {
             return count_edge;
+        }
+
+
+        public int get_value(int a, int b)
+        {
+            return arr[a, b];
         }
 
         public bool is_edge(int a, int b)

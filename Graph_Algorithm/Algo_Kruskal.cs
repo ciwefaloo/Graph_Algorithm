@@ -12,6 +12,7 @@ namespace Graph_Algorithm
 
         private int[] way = new int[100];
         private int cnt = 0;
+        private bool[,] used = new bool[100, 100];
 
 
         public void Run(Graph graph)
@@ -24,9 +25,9 @@ namespace Graph_Algorithm
                 {
                     for (int j = 0; j < graph.size_vertex(); j++)
                     {
-                        if (i != j && graph.arr[i,j] > 0 && graph.arr[i, j] < min_edge)
+                        if (i != j && graph.get_value(i,j) > 0 && graph.get_value(i, j) < min_edge && used[i,j] == false)
                         {
-                            min_edge = graph.arr[i, j];
+                            min_edge = graph.get_value(i, j);
                             v1 = i;
                             v2 = j;
                         }
@@ -34,8 +35,8 @@ namespace Graph_Algorithm
                 }
                 if (min_edge != 999)
                 {
-                    graph.arr[v1, v2] += 1000;
-                    graph.arr[v2, v1] += 1000;
+                    used[v1, v2] = true;
+                    used[v2, v1] = true;
                     way[cnt++] = v1;
                     way[cnt++] = v2;
                 }

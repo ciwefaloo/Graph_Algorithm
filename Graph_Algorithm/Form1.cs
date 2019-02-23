@@ -96,21 +96,23 @@ namespace Graph_Algorithm
             Line l = new Line(gr);
 
             Pen black = new Pen(Color.Black);
-            l.DrawLine(150 + H_RADIUS, 20 + H_RADIUS, 50 + H_RADIUS, 70 + H_RADIUS, black);
-            l.DrawLine(150 + H_RADIUS, 20 + H_RADIUS, 250 + H_RADIUS, 100 + H_RADIUS, black);
-            l.DrawLine(250 + H_RADIUS, 100 + H_RADIUS, 230 + H_RADIUS, 200 + H_RADIUS, black);
-            l.DrawLine(230 + H_RADIUS, 200 + H_RADIUS, 70 + H_RADIUS, 300 + H_RADIUS, black);
+            l.DrawLine(point[0].x + H_RADIUS, point[0].y + H_RADIUS, point[1].x + H_RADIUS, point[1].y + H_RADIUS, black, arr[0, 1]);
+            l.DrawLine(point[0].x + H_RADIUS, point[0].y + H_RADIUS, point[4].x + H_RADIUS, point[4].y + H_RADIUS, black, arr[0, 4]);
+            l.DrawLine(point[4].x + H_RADIUS, point[4].y + H_RADIUS, point[2].x + H_RADIUS, point[2].y + H_RADIUS, black, arr[4, 2]);
+            l.DrawLine(point[2].x + H_RADIUS, point[2].y + H_RADIUS, point[3].x + H_RADIUS, point[3].y + H_RADIUS, black, arr[2, 3]);
 
-            l.DrawLine(50 + H_RADIUS, 70 + H_RADIUS, 70 + H_RADIUS, 150 + H_RADIUS, black);
-            l.DrawLine(230 + H_RADIUS, 200 + H_RADIUS, 300 + H_RADIUS, 300 + H_RADIUS, black);
-            l.DrawLine(300 + H_RADIUS, 300 + H_RADIUS, 200 + H_RADIUS, 400 + H_RADIUS, black);
-            l.DrawLine(200 + H_RADIUS, 400 + H_RADIUS, 70 + H_RADIUS, 300 + H_RADIUS, black);
+            l.DrawLine(point[1].x + H_RADIUS, point[1].y + H_RADIUS, point[5].x + H_RADIUS, point[5].y + H_RADIUS, black, arr[1, 5]);
+            l.DrawLine(point[2].x + H_RADIUS, point[2].y + H_RADIUS, point[6].x + H_RADIUS, point[6].y + H_RADIUS, black, arr[2, 6]);
+            l.DrawLine(point[6].x + H_RADIUS, point[6].y + H_RADIUS, point[7].x + H_RADIUS, point[7].y + H_RADIUS, black, arr[6, 7]);
+            l.DrawLine(point[7].x + H_RADIUS, point[7].y + H_RADIUS, point[3].x + H_RADIUS, point[3].y + H_RADIUS, black, arr[7, 3]);
 
-            
+
             //IAlgorithm myAlgo = new Algo_DFS();
             //IAlgorithm myAlgo = new Algo_BFS();
-            IAlgorithm myAlgo = new Algo_Kruskal();
-            
+            //IAlgorithm myAlgo = new Algo_Kruskal();
+            IAlgorithm myAlgo = new Algo_Floyd();
+
+
             myAlgo.Run(graph);
 
             Edge[] edge = new Edge[100];
@@ -133,6 +135,9 @@ namespace Graph_Algorithm
 
             MessageBox.Show(s);
 
+            int q = 0;
+            
+ 
 
             for (int i = 0; i < n-1; i++)
             {
@@ -141,6 +146,14 @@ namespace Graph_Algorithm
 
                 int v2_x = edge[i].v2.x;
                 int v2_y = edge[i].v2.y;
+                if(v1_x==0 && v1_x == v1_y)
+                {
+                    q = edge[99].v1.x;
+                    string mn = "";
+                    mn += q;
+                    MessageBox.Show("the shortest way: " + mn);
+                    break;
+                }
 
                 c.DrawCircle(v1_x, v1_y, solid);
 
