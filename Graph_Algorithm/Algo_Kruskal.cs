@@ -13,7 +13,6 @@ namespace Graph_Algorithm
         private int[] way = new int[100];
         private int cnt = 0;
         private bool[,] used = new bool[100, 100];
-        private bool[] used_v = new bool[100];
 
         public void Run(Graph graph)
         {

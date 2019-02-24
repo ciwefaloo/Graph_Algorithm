@@ -110,8 +110,8 @@ namespace Graph_Algorithm
             //IAlgorithm myAlgo = new Algo_DFS();
             //IAlgorithm myAlgo = new Algo_BFS();
             //IAlgorithm myAlgo = new Algo_Kruskal();
-            IAlgorithm myAlgo = new Algo_Floyd();
-
+            //IAlgorithm myAlgo = new Algo_Floyd();
+            IAlgorithm myAlgo = new Algo_Bellman();
 
             myAlgo.Run(graph);
 
@@ -129,14 +129,14 @@ namespace Graph_Algorithm
             string s = "";
             int cnt_edge = edge[99].v1.y;
 
-
             for (int i = 0; i < cnt_edge; i++)
             {
                 s += edge[i].v1.x;
                 s = s + " " + edge[i].v1.y + "    " + edge[i].v2.x + " " + edge[i].v1.y + '\n';
             }
-
+            
             MessageBox.Show(s);
+            
 
             int q = 0;
             

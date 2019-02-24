@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algo_Bellman.cs" />
     <Compile Include="Algo_BFS.cs" />
     <Compile Include="Algo_DFS.cs" />
     <Compile Include="Algo_Floyd.cs" />
