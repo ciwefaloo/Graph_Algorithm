@@ -81,6 +81,7 @@ namespace Graph_Algorithm
                 sum += graph.get_value(way[i], way[i + 1]);
             }
             edge[99].v1.x = sum;
+            edge[99].v1.y = cnt-1;
         }
 
     }

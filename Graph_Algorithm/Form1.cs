@@ -90,7 +90,7 @@ namespace Graph_Algorithm
 
             for (int i = 0; i < 8; i++)
             {
-                c.DrawCircle(point[i].x, point[i].y, solidBrush);
+                c.DrawCircle(point[i].x, point[i].y, solidBrush,i);
             }
 
             Line l = new Line(gr);
@@ -127,7 +127,10 @@ namespace Graph_Algorithm
             SolidBrush solid = new SolidBrush(Color.FromArgb(255, 255, 0, 0));
 
             string s = "";
-            for(int i = 0; i < n - 1; i++)
+            int cnt_edge = edge[99].v1.y;
+
+
+            for (int i = 0; i < cnt_edge; i++)
             {
                 s += edge[i].v1.x;
                 s = s + " " + edge[i].v1.y + "    " + edge[i].v2.x + " " + edge[i].v1.y + '\n';
@@ -139,21 +142,13 @@ namespace Graph_Algorithm
             
  
 
-            for (int i = 0; i < n-1; i++)
+            for (int i = 0; i < cnt_edge; i++)
             {
                 int v1_x = edge[i].v1.x;
                 int v1_y = edge[i].v1.y;
 
                 int v2_x = edge[i].v2.x;
                 int v2_y = edge[i].v2.y;
-                if(v1_x==0 && v1_x == v1_y)
-                {
-                    q = edge[99].v1.x;
-                    string mn = "";
-                    mn += q;
-                    MessageBox.Show("the shortest way: " + mn);
-                    break;
-                }
 
                 c.DrawCircle(v1_x, v1_y, solid);
 
@@ -168,7 +163,13 @@ namespace Graph_Algorithm
                 System.Threading.Thread.Sleep(250);
 
             }
-            
+            if (edge[99].v1.x != 0)
+            {
+                q = edge[99].v1.x;
+                string mn = "";
+                mn += q;
+                MessageBox.Show("the shortest way: " + mn);
+            }            
         }
     }
 }

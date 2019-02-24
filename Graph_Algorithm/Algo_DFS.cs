@@ -71,6 +71,9 @@ namespace Graph_Algorithm
                 }
 
             }
+
+            edge[99].v1.y = cnt - 1;
+
         }
 
     }
