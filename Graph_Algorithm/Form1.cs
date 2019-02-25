@@ -112,7 +112,8 @@ namespace Graph_Algorithm
             //IAlgorithm myAlgo = new Algo_Kruskal();
             //IAlgorithm myAlgo = new Algo_Floyd();
             //IAlgorithm myAlgo = new Algo_Bellman();
-            IAlgorithm myAlgo = new Algo_Prima();
+            //IAlgorithm myAlgo = new Algo_Prima();
+            IAlgorithm myAlgo = new Algo_Dijkstra();
 
 
             myAlgo.Run(graph);

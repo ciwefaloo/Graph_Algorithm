@@ -70,8 +70,6 @@ namespace Graph_Algorithm
 
         public void SetDrawArea(Edge[] edge)
         {
-
-         
             int x = 7;
             int sum = 0;
             way[cnt++] = x;

@@ -20,7 +20,6 @@ namespace Graph_Algorithm
         {
             this.graph = graph;
             int[] min_e = new int[100];
-            int[] prev_v = new int[100];
             for(int i = 0; i < graph.size_vertex(); i++)
             {
                 min_e[i] = INF;
@@ -47,7 +46,6 @@ namespace Graph_Algorithm
                     if (graph.is_edge(v,to) &&  graph.get_value(v, to) < min_e[to])
                     {
                         min_e[to] = graph.get_value(v, to);
-                        prev_v[to] = v;
                     }
                 }                  
             }   
