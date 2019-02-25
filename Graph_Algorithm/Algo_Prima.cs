@@ -31,7 +31,7 @@ namespace Graph_Algorithm
                 int v = -1;
                 for (int j = 0; j < graph.size_vertex(); j++)
                 {
-                    if (used[j] != false && (v == -1 || min_e[j] < min_e[v]))
+                    if (used[j] == false && (v == -1 || min_e[j] < min_e[v]))
                     {
                         v = j;
                     }
@@ -39,6 +39,8 @@ namespace Graph_Algorithm
                 }
                     
                 used[v] = true;
+                way[cnt++] = v;
+
 
                 for (int to = 0; to < graph.size_vertex(); to++)
                 {
@@ -48,13 +50,40 @@ namespace Graph_Algorithm
                         prev_v[to] = v;
                     }
                 }                  
-            }
-            
+            }   
         }
 
         public void SetDrawArea(Edge[] edge)
         {
 
+            for (int i = 0; i < cnt - 1; i++)
+            {
+                if (graph.is_edge(way[i], way[i + 1]))
+                {
+                    edge[i].v1.x = graph.vertex[way[i]].x;
+                    edge[i].v1.y = graph.vertex[way[i]].y;
+
+                    edge[i].v2.x = graph.vertex[way[i + 1]].x;
+                    edge[i].v2.y = graph.vertex[way[i + 1]].y;
+                }
+                else
+                {
+                    for (int j = i - 1; j >= 0; j--)
+                    {
+                        if (graph.is_edge(way[i + 1], way[j]))
+                        {
+                            edge[i].v2.x = graph.vertex[way[i + 1]].x;
+                            edge[i].v2.y = graph.vertex[way[i + 1]].y;
+
+                            edge[i].v1.x = graph.vertex[way[j]].x;
+                            edge[i].v1.y = graph.vertex[way[j]].y;
+                        }
+                    }
+                }
+
+            }
+
+            edge[99].v1.y = cnt - 1;
         }
     }
 }
