@@ -50,6 +50,7 @@
     <Compile Include="Algo_BFS.cs" />
     <Compile Include="Algo_DFS.cs" />
     <Compile Include="Algo_Dijkstra.cs" />
+    <Compile Include="Algo_Falkerson.cs" />
     <Compile Include="Algo_Floyd.cs" />
     <Compile Include="Algo_Johnson.cs" />
     <Compile Include="Algo_Kruskal.cs" />

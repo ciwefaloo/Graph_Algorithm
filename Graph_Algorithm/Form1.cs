@@ -82,10 +82,16 @@ namespace Graph_Algorithm
             arr[7, 3] = 19;
             arr[3, 7] = 19;
 
+            arr[0, 2] = 10;
+            arr[2, 0] = 10;
+            
+
+
             Graph graph = new Graph(arr, n, point);
 
+            
             Circle c = new Circle(gr);
-
+            
             SolidBrush solidBrush = new SolidBrush(Color.FromArgb(255, 0, 0, 0));
 
             for (int i = 0; i < 8; i++)
@@ -93,8 +99,9 @@ namespace Graph_Algorithm
                 c.DrawCircle(point[i].x, point[i].y, solidBrush,i);
             }
 
+            
             Line l = new Line(gr);
-
+            
             Pen black = new Pen(Color.Black);
             l.DrawLine(point[0].x + H_RADIUS, point[0].y + H_RADIUS, point[1].x + H_RADIUS, point[1].y + H_RADIUS, black, arr[0, 1]);
             l.DrawLine(point[0].x + H_RADIUS, point[0].y + H_RADIUS, point[4].x + H_RADIUS, point[4].y + H_RADIUS, black, arr[0, 4]);
@@ -106,7 +113,7 @@ namespace Graph_Algorithm
             l.DrawLine(point[6].x + H_RADIUS, point[6].y + H_RADIUS, point[7].x + H_RADIUS, point[7].y + H_RADIUS, black, arr[6, 7]);
             l.DrawLine(point[7].x + H_RADIUS, point[7].y + H_RADIUS, point[3].x + H_RADIUS, point[3].y + H_RADIUS, black, arr[7, 3]);
 
-
+            
             //IAlgorithm myAlgo = new Algo_DFS();
             //IAlgorithm myAlgo = new Algo_BFS();
             //IAlgorithm myAlgo = new Algo_Kruskal();
@@ -114,7 +121,9 @@ namespace Graph_Algorithm
             //IAlgorithm myAlgo = new Algo_Bellman();
             //IAlgorithm myAlgo = new Algo_Prima();
             //IAlgorithm myAlgo = new Algo_Dijkstra();
-            IAlgorithm myAlgo = new Algo_Johnson();
+            //IAlgorithm myAlgo = new Algo_Johnson();
+            IAlgorithm myAlgo = new Algo_Falkerson();
+
 
             myAlgo.Run(graph);
 
@@ -130,21 +139,27 @@ namespace Graph_Algorithm
             SolidBrush solid = new SolidBrush(Color.FromArgb(255, 255, 0, 0));
 
             string s = "";
+
             int cnt_edge = edge[99].v1.y;
 
-            for (int i = 0; i < cnt_edge; i++)
+            for(int i = 0; i < cnt_edge; i++)
+            {
+                s = s + edge[i].v1.x + "     "; 
+            }
+            MessageBox.Show(s);
+
+            /*for (int i = 0; i < cnt_edge; i++)
             {
                 s += edge[i].v1.x;
                 s = s + " " + edge[i].v1.y + "    " + edge[i].v2.x + " " + edge[i].v1.y + '\n';
             }
             
             MessageBox.Show(s);
-            
+            */
+
 
             int q = 0;
             
- 
-
             for (int i = 0; i < cnt_edge; i++)
             {
                 int v1_x = edge[i].v1.x;
