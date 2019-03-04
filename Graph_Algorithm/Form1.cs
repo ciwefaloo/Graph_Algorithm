@@ -121,14 +121,14 @@ namespace Graph_Algorithm
             
             Graph graph = new Graph(arr, n, point);
 
-            //IAlgorithm myAlgo = new Algo_DFS();
+            IAlgorithm myAlgo = new Algo_DFS();
             //IAlgorithm myAlgo = new Algo_BFS();
             //IAlgorithm myAlgo = new Algo_Kruskal();
-            //IAlgorithm myAlgo = new Algo_Floyd();
+           //IAlgorithm myAlgo = new Algo_Floyd();
             //IAlgorithm myAlgo = new Algo_Bellman();
             //IAlgorithm myAlgo = new Algo_Prima();
             //IAlgorithm myAlgo = new Algo_Dijkstra();
-            IAlgorithm myAlgo = new Algo_Johnson();
+            //IAlgorithm myAlgo = new Algo_Johnson();
             //IAlgorithm myAlgo = new Algo_Falkerson();
 
 
@@ -149,11 +149,14 @@ namespace Graph_Algorithm
 
             int cnt_edge = edge[99].v1.y;
 
-            for(int i = 0; i < cnt_edge; i++)
+
+            if (edge[98].str!="")
             {
-                s = s + edge[i].v1.x + "     "; 
+                s = edge[98].str;
+                s += "flow : " + edge[99].v1.x.ToString();
+                MessageBox.Show(s);
+                return;
             }
-            MessageBox.Show(s);
 
             int q = 0;
             
@@ -185,6 +188,7 @@ namespace Graph_Algorithm
                 mn += q;
                 MessageBox.Show("the shortest way: " + mn);
             }
+            
             sr_graph.Close();
             sr_pos.Close();
         }

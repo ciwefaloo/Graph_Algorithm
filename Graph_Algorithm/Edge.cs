@@ -9,6 +9,7 @@ namespace Graph_Algorithm
     class Edge
     {
         public Vector2 v1 = new Vector2();
-        public Vector2 v2 = new Vector2();        
+        public Vector2 v2 = new Vector2();
+        public string str="";
     }
 }

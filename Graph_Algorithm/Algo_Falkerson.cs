@@ -92,23 +92,20 @@ namespace Graph_Algorithm
                  }
              }
 
+            string s = "";
+            for(int i = 0; i < n; i++)
+            {
+                for(int j = 0; j < n; j++)
+                {
+                    if (graph.is_edge(i, j))
+                    {
+                        s = s + i.ToString() + " - " + j.ToString() + " : " + arr[i, j].x + '\n';
+                    }
+                }
+            }
 
-            edge[0].v1.x = arr[0, 1].x;
-            edge[1].v1.x = arr[0, 4].x;
-
-            edge[2].v1.x = arr[1, 5].x;
-            edge[3].v1.x = arr[4, 2].x;
-
-            edge[4].v1.x = arr[2, 3].x;
-            edge[5].v1.x = arr[2, 6].x;
-
-            edge[6].v1.x = arr[3, 7].x;
-            edge[7].v1.x = arr[6, 7].x;
-
-            edge[8].v1.x = arr[0, 2].x;
-
-            edge[99].v1.y = 9;
-
+            edge[98].str = s;
+            edge[99].v1.x = max_flow;
         }
 
     }
