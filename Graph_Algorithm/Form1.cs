@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Graph_Algorithm
 {
@@ -27,93 +28,99 @@ namespace Graph_Algorithm
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics gr = e.Graphics;
+            StreamReader sr_pos = new StreamReader(@"E:\sol\Graph_Algorithm\Graph_Algorithm\position.txt");
+            StreamReader sr_graph = new StreamReader(@"E:\sol\Graph_Algorithm\Graph_Algorithm\graph.txt");
 
             Vector2[] point = new Vector2[100];
 
-            point[1] = new Vector2();
-            point[1].x = 50;
-            point[1].y = 70;
 
-            point[3] = new Vector2();
-            point[3].x = 70;
-            point[3].y = 300;
-
-            point[0] = new Vector2();
-            point[0].x = 150;
-            point[0].y = 20;
-
-            point[2] = new Vector2();
-            point[2].x = 230;
-            point[2].y = 200;
-
-            point[4] = new Vector2();
-            point[4].x = 250;
-            point[4].y = 100;
-
-            point[5] = new Vector2();
-            point[5].x = 70;
-            point[5].y = 150;
-
-            point[6] = new Vector2();
-            point[6].x = 300;
-            point[6].y = 300;
-
-            point[7] = new Vector2();
-            point[7].x = 200;
-            point[7].y = 400;
-
-
-            int n = 8;
-            int[,] arr = new int[n, n];
-            arr[0, 1] = 5;
-            arr[0, 4] = 9;
-            arr[1, 0] = 5;
-            arr[2, 4] = 10;
-            arr[2, 3] = 15;
-            arr[3, 2] = 15;
-            arr[4, 2] = 10;
-            arr[4, 0] = 9;
-            arr[5, 1] = 7;
-            arr[1, 5] = 7;
-            arr[6, 2] = 30;
-            arr[2, 6] = 30;
-            arr[6, 7] = 5;
-            arr[7, 6] = 5;
-            arr[7, 3] = 19;
-            arr[3, 7] = 19;
-
-            arr[0, 2] = 10;
-            arr[2, 0] = 10;
-            
-
-
-            Graph graph = new Graph(arr, n, point);
-
-            
             Circle c = new Circle(gr);
-            
-            SolidBrush solidBrush = new SolidBrush(Color.FromArgb(255, 0, 0, 0));
+            Line l = new Line(gr);
 
-            for (int i = 0; i < 8; i++)
+            SolidBrush solidBrush = new SolidBrush(Color.FromArgb(255, 0, 0, 0));
+            Pen black = new Pen(Color.Black);
+
+
+            int n = 0, num_str= 0; ;
+            string temp= sr_pos.ReadLine();
+            int pos = 0;
+            while (pos != temp.Length)
             {
-                c.DrawCircle(point[i].x, point[i].y, solidBrush,i);
+                n = n * 10 + (temp[pos] - '0');
+                pos++;
             }
 
+            while (num_str!=n)
+            {
+                int x = 0, y = 0;
+                pos = 0;
+                temp = "";
+                temp = sr_pos.ReadLine();              
+                while (temp[pos]!=' ')
+                {
+                    x = x * 10 + (temp[pos] - '0');
+                    pos++;
+                }
+                pos++;
+                while (pos != temp.Length)
+                {
+                    y = y * 10 + (temp[pos] - '0');
+                    pos++;
+                }
+                point[num_str] = new Vector2();
+                point[num_str].x = x;
+                point[num_str].y = y;
+                c.DrawCircle(point[num_str].x, point[num_str].y, solidBrush, num_str);
+                num_str++;
+            }
             
-            Line l = new Line(gr);
             
-            Pen black = new Pen(Color.Black);
-            l.DrawLine(point[0].x + H_RADIUS, point[0].y + H_RADIUS, point[1].x + H_RADIUS, point[1].y + H_RADIUS, black, arr[0, 1]);
-            l.DrawLine(point[0].x + H_RADIUS, point[0].y + H_RADIUS, point[4].x + H_RADIUS, point[4].y + H_RADIUS, black, arr[0, 4]);
-            l.DrawLine(point[4].x + H_RADIUS, point[4].y + H_RADIUS, point[2].x + H_RADIUS, point[2].y + H_RADIUS, black, arr[4, 2]);
-            l.DrawLine(point[2].x + H_RADIUS, point[2].y + H_RADIUS, point[3].x + H_RADIUS, point[3].y + H_RADIUS, black, arr[2, 3]);
 
-            l.DrawLine(point[1].x + H_RADIUS, point[1].y + H_RADIUS, point[5].x + H_RADIUS, point[5].y + H_RADIUS, black, arr[1, 5]);
-            l.DrawLine(point[2].x + H_RADIUS, point[2].y + H_RADIUS, point[6].x + H_RADIUS, point[6].y + H_RADIUS, black, arr[2, 6]);
-            l.DrawLine(point[6].x + H_RADIUS, point[6].y + H_RADIUS, point[7].x + H_RADIUS, point[7].y + H_RADIUS, black, arr[6, 7]);
-            l.DrawLine(point[7].x + H_RADIUS, point[7].y + H_RADIUS, point[3].x + H_RADIUS, point[3].y + H_RADIUS, black, arr[7, 3]);
+            int[,] arr = new int[n, n];
+            temp = sr_graph.ReadLine();
+            num_str = 0;
+            int num_edge = 0;
+            pos = 0;
+            while (pos != temp.Length)
+            {
+                num_edge = num_edge * 10 + (temp[pos] - '0');
+                pos++;
+            }
 
+
+            while (num_str!= num_edge)
+            {
+                temp = "";
+                temp = sr_graph.ReadLine();
+                int a = 0, b = 0, w = 0;
+                pos = 0;
+                while(temp[pos]!=' ')
+                {
+                    a = a * 10 + (temp[pos]-'0');
+                    pos++;
+                }
+                pos++;
+                while (temp[pos] != ' ')
+                {
+                    b = b * 10 + (temp[pos]-'0');
+                    pos++;
+                }
+                pos++;
+                while (pos!=temp.Length)
+                {
+                    w = w * 10 + (temp[pos]-'0');
+                    pos++;
+                }
+                arr[a, b] = w;
+                arr[b, a] = w;
+                num_str++;
+
+                l.DrawLine(point[a].x + H_RADIUS, point[a].y + H_RADIUS, point[b].x + H_RADIUS, point[b].y + H_RADIUS, black, arr[a, b]);
+
+            }
             
+            Graph graph = new Graph(arr, n, point);
+
             //IAlgorithm myAlgo = new Algo_DFS();
             //IAlgorithm myAlgo = new Algo_BFS();
             //IAlgorithm myAlgo = new Algo_Kruskal();
@@ -121,8 +128,8 @@ namespace Graph_Algorithm
             //IAlgorithm myAlgo = new Algo_Bellman();
             //IAlgorithm myAlgo = new Algo_Prima();
             //IAlgorithm myAlgo = new Algo_Dijkstra();
-            //IAlgorithm myAlgo = new Algo_Johnson();
-            IAlgorithm myAlgo = new Algo_Falkerson();
+            IAlgorithm myAlgo = new Algo_Johnson();
+            //IAlgorithm myAlgo = new Algo_Falkerson();
 
 
             myAlgo.Run(graph);
@@ -147,16 +154,6 @@ namespace Graph_Algorithm
                 s = s + edge[i].v1.x + "     "; 
             }
             MessageBox.Show(s);
-
-            /*for (int i = 0; i < cnt_edge; i++)
-            {
-                s += edge[i].v1.x;
-                s = s + " " + edge[i].v1.y + "    " + edge[i].v2.x + " " + edge[i].v1.y + '\n';
-            }
-            
-            MessageBox.Show(s);
-            */
-
 
             int q = 0;
             
@@ -187,7 +184,9 @@ namespace Graph_Algorithm
                 string mn = "";
                 mn += q;
                 MessageBox.Show("the shortest way: " + mn);
-            }            
+            }
+            sr_graph.Close();
+            sr_pos.Close();
         }
     }
 }

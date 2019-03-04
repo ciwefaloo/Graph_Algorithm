@@ -15,6 +15,7 @@ namespace Graph_Algorithm
         private int[,] prev = new int[100, 100];
         private int[] way = new int[100];
 
+
         public void Run(Graph graph)
         {
             this.graph = graph;
